@@ -11,6 +11,7 @@ mongoose.connect('mongodb://localhost:27017/students')
 mongoose.connection.on('connected',()=>{
     console.log('Database is connected');
 })
+
 mongoose.connection.on('error',()=>{
     console.log('error occured');
 })
