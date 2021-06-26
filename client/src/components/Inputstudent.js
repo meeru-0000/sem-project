@@ -14,7 +14,7 @@ class Inputstudent extends React.Component
         this.setState({[e.target.name]:e.target.value})
     }
     handleSubmit = ()=>{
-        if(this.state.firstname!='' && this.state.lastname!='',this.state.place!='')
+        if(this.state.firstname!=='' && this.state.lastname!=='',this.state.place!=='')
         {
             axios.post('http://localhost:5000/students',this.state)
             .then(res=>{
