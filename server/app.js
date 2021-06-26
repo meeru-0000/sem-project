@@ -7,7 +7,7 @@ const Student = require('./models/Students')
 const app = express()
 //db connections
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/students')
+mongoose.connect('mongodb+srv://nameerahmad:nameerahmad@cluster0.ydbtw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 mongoose.connection.on('connected',()=>{
     console.log('Database is connected');
 })
