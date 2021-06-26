@@ -37,7 +37,7 @@ app.post('/students',(req,res)=>{
     console.log(req.body.lastname);
     console.log(req.body.place);
     const student = new  Student({
-        _id : new mongoose.Types.ObjectId,
+        // _id : new mongoose.Types.ObjectId,
         firstname : req.body.firstname,
         lastname : req.body.lastname,
         place: req.body.place

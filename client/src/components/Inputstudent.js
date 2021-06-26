@@ -13,13 +13,22 @@ class Inputstudent extends React.Component
         console.log(e.target.value);
         this.setState({[e.target.name]:e.target.value})
     }
-    handleSubmit = ()=>{
+    handleSubmit = (e)=>{
+        e.preventDefault();
         if(this.state.firstname!='' && this.state.lastname!='',this.state.place!='')
         {
-            axios.post('http://localhost:5000/students',this.state)
+            axios.post('http://localhost:5000/students',
+            {
+                "firstname":this.state.firstname,
+                "secondname":this.state.secondname,
+                "place":this.state.place
+            })
             .then(res=>{
                 console.log('successfully posted');
                 this.setState({firstname:'',lastname:'',place:''});
+            }).catch(err=>
+            {
+                console.log(err);
             });
             window.location = '/';
            
@@ -30,7 +39,7 @@ class Inputstudent extends React.Component
         return(
             <div class="row text-center">
                 <div class="col-md-4">
-                    <form onSubmit={()=>this.handleSubmit()}>
+                    <form onSubmit={this.handleSubmit}>
                         <input required onChange={(e)=>this.handleChange(e)} name='firstname' value={this.state.firstname} style={{fontSize:'15px',fontFamily:'Cursive,sans-serif,Gugi',borderRadius:'10px',marginLeft:'50px',marginTop:'20px'}} placeholder="First Name" class="form-control"/>
                         <input required onChange={(e)=>this.handleChange(e)} name='lastname' value={this.state.lastname} style={{fontSize:'15px',fontFamily:'Cursive,sans-serif,Gugi',borderRadius:'10px',marginLeft:'50px',marginTop:'20px'}} placeholder="Last Name" class="form-control"/>
                         <input required onChange={(e)=>this.handleChange(e)} name='place' value={this.state.place} style={{fontSize:'15px',fontFamily:'Cursive,sans-serif,Gugi',borderRadius:'10px',marginLeft:'50px',marginTop:'20px'}} placeholder="Place" class="form-control"/>

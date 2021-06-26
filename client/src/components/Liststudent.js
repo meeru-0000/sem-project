@@ -14,11 +14,12 @@ class Liststudent extends React.Component
         .then(res=>{
             console.log(res);
             this.setState({students:res.data});
-        })
+        }).catch(()=>{console.log("Error")});
     }
     componentDidMount = ()=>{
         this.getStudents();
     }
+
     handleDelete = (id)=>{
         axios.delete(`http://localhost:5000/student/${id}`)
         .then(res=>{
@@ -26,9 +27,11 @@ class Liststudent extends React.Component
             window.location = '/';
         })
     }
+
     handleUpdate = (e)=>{
         this.setState({[e.target.name]:e.target.value});
     }
+
     handleModalUpdate = (e)=>{
         axios.put(`http://localhost:5000/student/${this.state.uid}`,{firstname:this.state.ufirstname,lastname:this.state.ulastname,place:this.state.uplace})
         .then(res=>{
@@ -46,7 +49,7 @@ class Liststudent extends React.Component
                   this.state.students.map(student=>(
                       <div key={student._id} class="card" style={{borderRadius:'10px',padding:'15px',backgroundColor:'whitesmoke',display:'inline-block',marginLeft:'15px',marginTop:'10px'}}>
                             <div class="card-body">
-                                <h2>First Name: {student.firstname}</h2>
+                                <h2>First ame: {student.firstname}</h2>
                                 <h2>Last Name: {student.lastname}</h2>
                                 <h3>Place: {student.place}</h3>
                                 <div class="container" style={{display:'inline'}}>
